@@ -26,12 +26,13 @@ function dirDiff(dirA, dirB) {
   const dirATree = dirTree(dirA)
   const dirBTree = dirTree(dirB)
   let diffFiles = []
-
-  const directoryQueue = []
+  const directoryQueue = dirATree.children
 
   for (let entry of directoryQueue) {
-    if (entry.children === 'directory') {
-      directoryQueue.concat(entry.children)
+    if (entry.type === 'directory') {
+      entry.children.forEach(child => {
+        directoryQueue.push(child)
+      })
     } else if (
       !dirBTree.children.find(
         item => item.name === entry.name && item.type === entry.type,
@@ -41,8 +42,17 @@ function dirDiff(dirA, dirB) {
     }
   }
 
+  let res
+  if (diffFiles.length > 0) {
+    res = makeError({
+      meta: diffFiles,
+      message: 'Folder content is not equal',
+    })
+  } else {
+    res = null
+  }
   return {
-    err: makeError({ meta: diffFiles, message: 'Folder content is not equal' }),
+    err: res,
   }
 }
 
@@ -95,6 +105,7 @@ async function setup() {
           console.error('\n')
           console.error(
             `Error ⚠️: ${testName} Failed with message: ${err.message}`,
+            err.meta,
           )
           console.error('\n')
         })
