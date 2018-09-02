@@ -5,7 +5,7 @@
  * and immediately calls it.
  */
 
-import main from './main.js'
+import main from './bundler.js'
 
 // @TODO get args
 // Example: @matthamlin/native-bundler --entry=path/to/entry/module.js --out=path/to/dir/or/dir/name

@@ -12,7 +12,7 @@
 
 const dirTree = require('directory-tree')
 const { mkdirSync } = require('fs')
-const { default: bundler } = require('../dist/main.js')
+const { default: bundler } = require('../dist/bundler.js')
 
 function makeError({ message, meta }) {
   return {

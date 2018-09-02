@@ -14,3 +14,13 @@ This is an attempt at making a javascript bundler program that follows the next 
 3. Support static builds
 
 Maybe more as well, but those are the ones I want to start with.
+
+## TODO:
+
+- [ ] Test Runner
+
+  - [ ] support file diffs
+
+- [ ] Bundler
+  - [ ] Asset Downloader
+  - [ ] Determine import query param structure
