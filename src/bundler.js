@@ -3,12 +3,12 @@
  *
  * In here we need to do a few things:
  *
- * 1. Define a main function that we will call at the bottom of the file
- *   this function will handle starting our bundler
- * 2. Parse some arguments for the input
- * 3. Call out to our other modules to handle transforms
+ * 1. Define a bundler function that we will export
+ * 2. Call out to other transformation functions
  */
 
-export default function main({ entry, out }) {
-  // do actual logic here
+import { getDependencyTree } from './get-dependency-tree.js'
+
+export const bundler = async ({ entry, out }) => {
+  const dependencyTree = getDependencyTree(entry)
 }

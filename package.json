@@ -13,5 +13,9 @@
   "scripts": {
     "test": "node ./test-runner/index.js",
     "build": "babel src/ --out-dir dist/"
+  },
+  "dependencies": {
+    "@babel/traverse": "7.0.0",
+    "babylon": "6.18.0"
   }
 }
