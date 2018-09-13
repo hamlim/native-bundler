@@ -9,7 +9,9 @@
  */
 
 import traverse from '@babel/traverse'
+import { parse } from 'babylon'
 import fs from 'fs'
+import path from 'path'
 
 import { readFile } from './utils/file-system.js'
 import { isExternalImport } from './utils/index.js'
@@ -22,7 +24,7 @@ let COUNTER = 0
 // this should probably be a point where we can inject plugins
 const makeAsset = async filename => {
   const content = await readFile(filename, 'utf-8')
-  const ast = babylon.parse(content, {
+  const ast = parse(content, {
     sourceType: 'module',
   })
 
@@ -44,6 +46,7 @@ const makeAsset = async filename => {
 }
 
 export const getDependencyTree = async (inputPath, resolveExternalAsset) => {
+  // console.log('Here?')
   const entryAsset = await makeAsset(inputPath)
 
   const externalPaths = []
@@ -53,19 +56,24 @@ export const getDependencyTree = async (inputPath, resolveExternalAsset) => {
   for (const asset of queue) {
     asset.mapping = {}
     const dirname = path.dirname(asset.filename)
+    console.log(dirname)
     for (const depPath of asset.dependencies) {
       let absolutePath
       if (isExternalImport(depPath)) {
         const relativePath = await resolveExternalAsset(depPath)
+        console.log(relativePath)
         absolutePath = path.join(dirname, relativePath)
       } else {
         absolutePath = path.join(dirname, depPath)
       }
+      // console.log(absolutePath)
       const child = await makeAsset(absolutePath)
       asset.mapping[depPath] = child.id
       queue.push(child)
     }
   }
+
+  console.log(queue)
 
   return {
     tree: queue,

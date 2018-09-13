@@ -60,6 +60,8 @@ function fileDiff(dirA, dirB) {
   return { err: null }
 }
 
+const assetCache = new Map()
+
 async function run(fixtureDirectory) {
   const { name, children } = fixtureDirectory
   // get the src and expected directories
@@ -75,8 +77,9 @@ async function run(fixtureDirectory) {
 
   // bundle the code
   await bundler({
-    input: `${src.path}/src.js`,
-    out: actualPath,
+    entry: `${src.path}/src.js`,
+    out: '../actual',
+    cache: assetCache,
   })
 
   // grab any diffs between directories
