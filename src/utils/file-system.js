@@ -14,3 +14,7 @@ const { promisify } = util
 export const readFile = promisify(fs.readFile)
 
 export const writeFile = promisify(fs.writeFile)
+
+export const makeDirectory = promisify(fs.mkdir)
+
+export const stat = promisify(fs.stat)

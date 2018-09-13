@@ -12,9 +12,14 @@ import traverse from '@babel/traverse'
 import fs from 'fs'
 
 import { readFile } from './utils/file-system.js'
+import { isExternalImport } from './utils/index.js'
 
 let COUNTER = 0
 
+// @TODO
+// Right now this is only handling Javascript assets
+// This should also handle CSS, TXT, HTML, and SVG assets as well
+// this should probably be a point where we can inject plugins
 const makeAsset = async filename => {
   const content = await readFile(filename, 'utf-8')
   const ast = babylon.parse(content, {
@@ -38,4 +43,32 @@ const makeAsset = async filename => {
   }
 }
 
-export const getDependencyTree = inputPath => {}
+export const getDependencyTree = async (inputPath, resolveExternalAsset) => {
+  const entryAsset = await makeAsset(inputPath)
+
+  const externalPaths = []
+
+  const queue = [entryAsset]
+
+  for (const asset of queue) {
+    asset.mapping = {}
+    const dirname = path.dirname(asset.filename)
+    for (const depPath of asset.dependencies) {
+      let absolutePath
+      if (isExternalImport(depPath)) {
+        const relativePath = await resolveExternalAsset(depPath)
+        absolutePath = path.join(dirname, relativePath)
+      } else {
+        absolutePath = path.join(dirname, depPath)
+      }
+      const child = await makeAsset(absolutePath)
+      asset.mapping[depPath] = child.id
+      queue.push(child)
+    }
+  }
+
+  return {
+    tree: queue,
+    externalPaths,
+  }
+}

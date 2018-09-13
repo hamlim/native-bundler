@@ -8,7 +8,9 @@
  */
 
 import { getDependencyTree } from './get-dependency-tree.js'
+import {resolveExternalAssets } from './resolve-external-assets.js';
 
-export const bundler = async ({ entry, out }) => {
-  const dependencyTree = getDependencyTree(entry)
-}
+export const bundler = async ({ entry, out, config, cache }) => {
+  const {tree} = await getDependencyTree(entry, resolveExternalAssets({config, cache}));
+
+})
