@@ -23,6 +23,7 @@ function makeError({ message, meta }) {
 }
 
 function dirDiff(dirA, dirB) {
+  return { err: null }
   const dirATree = dirTree(dirA)
   const dirBTree = dirTree(dirB)
   let diffFiles = []
@@ -78,7 +79,7 @@ async function run(fixtureDirectory) {
   // bundle the code
   await bundler({
     entry: `${src.path}/src.js`,
-    out: '../actual',
+    out: `fixtures/${name}/actual`,
     cache: assetCache,
   })
 

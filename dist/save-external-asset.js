@@ -46,9 +46,7 @@ const saveExternalAsset = async ({
     try {
       const response = await (0, _nodeFetch.default)(assetPath);
       const body = await response.text();
-
-      const vendorDirectory = _path.default.relative(outputDirectory, '/_vendor_');
-
+      const vendorDirectory = `${outputDirectory}/_vendor_`;
       const directoryExists = await (0, _fileSystem.exists)(vendorDirectory);
 
       if (!directoryExists) {
@@ -57,9 +55,12 @@ const saveExternalAsset = async ({
 
       const filepath = `${vendorDirectory}/${name}`;
       await (0, _fileSystem.writeFile)(filepath);
+
+      const absolutePath = _path.default.resolve(process.cwd(), filepath);
+
       const {
         birthtime
-      } = await (0, _fileSystem.stat)(filepath);
+      } = await (0, _fileSystem.stat)(absolutePath);
       return Promise.resolve({
         birthtime,
         name,

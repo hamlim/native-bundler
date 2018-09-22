@@ -32,14 +32,15 @@ export const saveExternalAsset = async ({ assetPath, outputDirectory }) => {
     try {
       const response = await fetch(assetPath)
       const body = await response.text()
-      const vendorDirectory = path.relative(outputDirectory, '/_vendor_')
+      const vendorDirectory = `${outputDirectory}/_vendor_`
       const directoryExists = await exists(vendorDirectory)
       if (!directoryExists) {
         await makeDirectory(vendorDirectory)
       }
       const filepath = `${vendorDirectory}/${name}`
       await writeFile(filepath)
-      const { birthtime } = await stat(filepath)
+      const absolutePath = path.resolve(process.cwd(), filepath)
+      const { birthtime } = await stat(absolutePath)
       return Promise.resolve({
         birthtime,
         name,

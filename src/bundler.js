@@ -9,12 +9,23 @@
 
 import { getDependencyTree } from './get-dependency-tree.js'
 import { resolveExternalAssets } from './resolve-external-assets.js'
+import { transformAsset } from './transform-asset.js'
 
-export const bundler = async ({ entry, out, config, cache }) => {
-  const { tree } = await getDependencyTree(
-    entry,
-    resolveExternalAssets({ config, cache, out }),
-  )
-  console.log(cache)
+export const bundler = async ({
+  entry,
+  out,
+  config = {
+    cacheExternals: true,
+    babel: { presets: undefined, plugins: undefined },
+  },
+  cache,
+} = {}) => {
+  const { tree } = await getDependencyTree({
+    inputPath: entry,
+    resolveExternalAsset: resolveExternalAssets({ config, cache, out }),
+    config,
+    transformAsset: transformAsset(config),
+  })
+
   console.log(tree)
 }

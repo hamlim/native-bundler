@@ -16,8 +16,12 @@
     "build": "babel src/ --out-dir dist/"
   },
   "dependencies": {
+    "@babel/core": "7.0.1",
     "@babel/traverse": "7.0.0",
     "babylon": "6.18.0",
     "node-fetch": "2.2.0"
+  },
+  "peerDependencies": {
+    "@babel/preset-env": "7.0.0"
   }
 }

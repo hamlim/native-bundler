@@ -41,11 +41,11 @@ const resolveExternalAssets = ({
       outputDirectory: out
     });
     const {
-      filepath: localPath,
       birthtime: createdTime,
-      name: filename
+      filepath: localPath,
+      name: filename,
+      error
     } = asset;
-    console.log(asset);
     cache.set(assetPath, {
       localPath,
       createdTime,
