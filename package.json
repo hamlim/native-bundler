@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/core",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "repository": "git@github.com:hamlim/native-bundler.git",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
