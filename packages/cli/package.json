@@ -1,0 +1,21 @@
+{
+  "name": "@native-bundler/cli",
+  "version": "0.0.2",
+  "description": "",
+  "repository": "git@github.com:hamlim/native-bundler.git",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src/ --out-dir dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
+  "license": "MIT",
+  "dependencies": {
+    "@native-bundler/core": "0.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.0.0",
+    "@babel/preset-env": "7.0.0"
+  }
+}

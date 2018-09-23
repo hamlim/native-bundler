@@ -8,7 +8,9 @@ This is an attempt at making a javascript bundler program that follows the next 
 - CSS
 - HTML
 - SVG
-- txt
+- TXT
+- MD
+- MDX
 - More?
 
 3. Support static builds
@@ -22,5 +24,7 @@ Maybe more as well, but those are the ones I want to start with.
   - [ ] support file diffs
 
 - [ ] Bundler
-  - [ ] Asset Downloader
-  - [ ] Determine import query param structure
+  - [x] Asset Downloader
+  - [x] Determine import query param structure
+  - [ ] Actual bundling assets
+  - [ ] Plugin Architecture
