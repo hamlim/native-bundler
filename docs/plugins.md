@@ -13,7 +13,34 @@ All that a plugin would need to do in stage 2 is to determine how the asset is s
 
 Stage 3 should be all custom depending on the plugin.
 
-## Concept:
+## Second Concept:
+
+A plugin only really needs to define the following things:
+
+- `code` the new returned value after transformation
+- `map` optional, allows for better dev experiences
+- `dependencies` optional array of other modules that the transformed asset depends upon (on top of assets `require`d)
+
+Export a function called `plugin` that the core package can import (for builtins) or that a user can provide via config to be imported and used.
+
+```js
+export const plugin = async ({
+  source,
+  config
+}) => Promise<{ code, map, dependencies }>
+```
+
+### Example text transformation plugin
+
+```js
+export const plugin = async ({ source, config }) => {
+  return Promise.resolve({
+    code: `return ${source}`,
+  })
+}
+```
+
+## Initial Concept:
 
 A plugin can export a function that returns an object of three keys:
 

@@ -26,5 +26,5 @@ Maybe more as well, but those are the ones I want to start with.
 - [ ] Bundler
   - [x] Asset Downloader
   - [x] Determine import query param structure
-  - [ ] Actual bundling assets
   - [ ] Plugin Architecture
+  - [ ] Actual bundling assets

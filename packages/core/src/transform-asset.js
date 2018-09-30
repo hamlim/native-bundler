@@ -7,24 +7,27 @@
 
 import { JS } from './get-asset-type.js'
 
-import { transformFromAstAsync } from '@babel/core'
-
-import { defaultBabelConfig } from './configs/babel-config.js'
+import { plugin as JSPlugin } from '@native-bundler/javascript-plugin'
 
 export const transformAsset = (config = {}) => async ({
+  source,
   filename,
   ast,
   isExternal,
   assetType,
 }) => {
+  // @TODO determine if we want to actually handle external
+  // assets here or not
+  // we could leave it up to the plugin to decide I guess
   if (isExternal) {
     return Promise.resolve({ code: '' })
   }
   switch (assetType.type) {
     case JS: {
-      const babelConfig = defaultBabelConfig(config)
-
-      return transformFromAstAsync(ast, null, babelConfig)
+      return JSPlugin({
+        source,
+        config,
+      })
     }
     default: {
       return Promise.resolve({ code: '' })

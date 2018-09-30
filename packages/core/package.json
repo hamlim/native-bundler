@@ -19,9 +19,7 @@
     "@babel/core": "7.0.1",
     "@babel/traverse": "7.0.0",
     "babylon": "6.18.0",
-    "node-fetch": "2.2.0"
-  },
-  "peerDependencies": {
-    "@babel/preset-env": "7.0.0"
+    "node-fetch": "2.2.0",
+    "@native-bundler/javascript-plugin": "0.0.1"
   }
 }

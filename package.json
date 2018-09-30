@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.4.0"
+    "lerna": "^3.4.0",
+    "@babel/preset-env": "7.1.0"
   }
 }

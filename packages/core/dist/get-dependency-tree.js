@@ -63,6 +63,7 @@ const makeAsset = async ({
   const {
     code
   } = await transformAsset({
+    source: content,
     filename,
     ast,
     isExternal,
