@@ -7,9 +7,7 @@ exports.transformAsset = void 0;
 
 var _getAssetType = require("./get-asset-type.js");
 
-var _core = require("@babel/core");
-
-var _babelConfig = require("./configs/babel-config.js");
+var _javascriptPlugin = require("@native-bundler/javascript-plugin");
 
 /**
  * Transform Asset
@@ -18,11 +16,15 @@ var _babelConfig = require("./configs/babel-config.js");
  * about an asset and will transform it into code
  */
 const transformAsset = (config = {}) => async ({
+  source,
   filename,
   ast,
   isExternal,
   assetType
 }) => {
+  // @TODO determine if we want to actually handle external
+  // assets here or not
+  // we could leave it up to the plugin to decide I guess
   if (isExternal) {
     return Promise.resolve({
       code: ''
@@ -32,8 +34,10 @@ const transformAsset = (config = {}) => async ({
   switch (assetType.type) {
     case _getAssetType.JS:
       {
-        const babelConfig = (0, _babelConfig.defaultBabelConfig)(config);
-        return (0, _core.transformFromAstAsync)(ast, null, babelConfig);
+        return (0, _javascriptPlugin.plugin)({
+          source,
+          config
+        });
       }
 
     default:

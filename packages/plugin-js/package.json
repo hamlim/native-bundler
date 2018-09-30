@@ -1,0 +1,20 @@
+{
+  "name": "@native-bundler/javascript-plugin",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "7.1.2",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.0.0",
+    "@babel/preset-env": "7.1.0"
+  },
+  "scripts": {
+    "build": "babel src/ --out-dir dist/"
+  }
+}

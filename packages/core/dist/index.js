@@ -1,5 +1,13 @@
 "use strict";
 
-var _bundler = _interopRequireDefault(require("./bundler.js"));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "default", {
+  enumerable: true,
+  get: function () {
+    return _bundler.bundler;
+  }
+});
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _bundler = require("./bundler.js");
