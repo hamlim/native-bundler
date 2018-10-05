@@ -20,7 +20,7 @@ export const transformAsset = (config = {}) => async ({
   // assets here or not
   // we could leave it up to the plugin to decide I guess
   if (isExternal) {
-    return Promise.resolve({ code: '' })
+    return Promise.resolve({ code: source })
   }
   switch (assetType.type) {
     case JS: {

@@ -12,9 +12,11 @@
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",
-    "@babel/preset-env": "7.1.0"
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-react": "7.0.0"
   },
   "scripts": {
     "build": "babel src/ --out-dir dist/"
-  }
+  },
+  "gitHead": "dad3a0ff5f8e5321cd59bc1b09c653e20bd7d159"
 }

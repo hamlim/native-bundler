@@ -54,7 +54,7 @@ const saveExternalAsset = async ({
       }
 
       const filepath = `${vendorDirectory}/${name}`;
-      await (0, _fileSystem.writeFile)(filepath);
+      await (0, _fileSystem.writeFile)(filepath, body);
 
       const absolutePath = _path.default.resolve(process.cwd(), filepath);
 

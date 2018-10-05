@@ -11,6 +11,8 @@ var _resolveExternalAssets = require("./resolve-external-assets.js");
 
 var _transformAsset = require("./transform-asset.js");
 
+var _fileSystem = require("./utils/file-system");
+
 /**
  * Initial module of the native-bundler package
  *
@@ -43,7 +45,31 @@ const bundler = async ({
     config,
     transformAsset: (0, _transformAsset.transformAsset)(config)
   });
-  console.log(tree);
+  let modules = '';
+  tree.forEach(mod => {
+    modules += `${mod.id}: [
+function(require, module, exports) {
+  ${mod.code}
+},
+${JSON.stringify(mod.mapping)}
+],`;
+  });
+  const result = `(function(modules){
+function require(id) {
+  const [fn, mapping] = modules[id];
+  function localRequire(name) {
+    return require(mapping[name])
+  }
+  const module = { exports: {} }
+  fn(localRequire, module, module.exports);
+
+  return module.exports;
+}
+require(0);
+})({${modules}})
+  `; // write bundle
+
+  await (0, _fileSystem.writeFile)(`${out}/bundle.js`, result);
 };
 
 exports.bundler = bundler;

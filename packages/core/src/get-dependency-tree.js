@@ -34,7 +34,7 @@ const makeAsset = async ({
   let ast = null
   let dependencies = []
 
-  if (assetType.type === JS) {
+  if (assetType.type === JS && !isExternal) {
     ast = parse(content, {
       sourceType: 'module',
     })
@@ -99,6 +99,7 @@ export const getDependencyTree = async ({
         transformAsset,
       })
       if (isExternal) {
+        asset.code = asset.code.replace(depPath, absolutePath)
         externalPaths.push({
           depPath,
           absolutePath,
@@ -127,8 +128,6 @@ export const getDependencyTree = async ({
       }
     })
   }
-
-  console.log(queue)
 
   return {
     tree: queue,

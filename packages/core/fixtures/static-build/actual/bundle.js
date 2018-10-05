@@ -1,4 +1,29 @@
-/** @license React v16.5.1
+(function(modules){
+function require(id) {
+  const [fn, mapping] = modules[id];
+  function localRequire(name) {
+    return require(mapping[name])
+  }
+  const module = { exports: {} }
+  fn(localRequire, module, module.exports);
+
+  return module.exports;
+}
+require(0);
+})({0: [
+function(require, module, exports) {
+  "use strict";
+
+var _reactProductionMin = _interopRequireDefault(require("fixtures/static-build/actual/_vendor_/react.production.min.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+console.log(_reactProductionMin.default.version);
+},
+{"fixtures/static-build/actual/_vendor_/react.production.min.js":1}
+],1: [
+function(require, module, exports) {
+  /** @license React v16.5.1
  * react.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -25,3 +50,8 @@ unstable_getCurrent:function(){return null},unstable_getThreadID:function(){retu
 function(){return null},null)},toArray:function(a){var b=[];L(a,b,null,function(a){return a});return b},only:function(a){H(a)?void 0:l("143");return a}},createRef:function(){return{current:null}},Component:p,PureComponent:G,createContext:function(a,b){void 0===b&&(b=null);a={$$typeof:ra,_calculateChangedBits:b,_currentValue:a,_currentValue2:a,Provider:null,Consumer:null,unstable_read:null};a.Provider={$$typeof:qa,_context:a};a.Consumer=a;a.unstable_read=oa.bind(null,a);return a},forwardRef:function(a){return{$$typeof:ta,
 render:a}},Fragment:n,StrictMode:M,unstable_AsyncMode:sa,unstable_Profiler:pa,createElement:S,cloneElement:function(a,b,c){null===a||void 0===a?l("267",a):void 0;var d=void 0,e=x({},a.props),f=a.key,h=a.ref,g=a._owner;if(null!=b){void 0!==b.ref&&(h=b.ref,g=v.current);void 0!==b.key&&(f=""+b.key);var k=void 0;a.type&&a.type.defaultProps&&(k=a.type.defaultProps);for(d in b)T.call(b,d)&&!U.hasOwnProperty(d)&&(e[d]=void 0===b[d]&&void 0!==k?k[d]:b[d])}d=arguments.length-2;if(1===d)e.children=c;else if(1<
 d){k=Array(d);for(var n=0;n<d;n++)k[n]=arguments[n+2];e.children=k}return{$$typeof:r,type:a.type,key:f,ref:h,props:e,_owner:g}},createFactory:function(a){var b=S.bind(null,a);b.type=a;return b},isValidElement:H,version:"16.5.1",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:y};n=(M={default:n},n)||M;return n.default||n});
+
+},
+{}
+],})
+  
