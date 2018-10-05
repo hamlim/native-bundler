@@ -7,7 +7,7 @@
 
 import { JS } from './get-asset-type.js'
 
-import { plugin as JSPlugin } from '@native-bundler/javascript-plugin'
+import { plugin as JSPlugin } from '@native-bundler/plugin-js'
 
 export const transformAsset = (config = {}) => async ({
   source,

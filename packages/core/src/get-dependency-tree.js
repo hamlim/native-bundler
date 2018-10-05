@@ -128,6 +128,8 @@ export const getDependencyTree = async ({
     })
   }
 
+  console.log(queue)
+
   return {
     tree: queue,
     externalPaths,
