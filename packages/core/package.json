@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/core",
-  "version": "0.0.2",
+  "version": "0.0.1-alpha.0",
   "main": "dist/index.js",
   "repository": "git@github.com:hamlim/native-bundler.git",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
@@ -8,7 +8,8 @@
   "devDependencies": {
     "@babel/cli": "7.0.0",
     "@babel/preset-env": "7.0.0",
-    "directory-tree": "2.1.0"
+    "directory-tree": "2.1.0",
+    "@babel/preset-react": "7.0.0"
   },
   "scripts": {
     "test": "node ./test-runner/index.js",
@@ -18,8 +19,9 @@
   "dependencies": {
     "@babel/core": "7.0.1",
     "@babel/traverse": "7.0.0",
+    "@native-bundler/plugin-js": "^0.0.1-alpha.0",
     "babylon": "6.18.0",
-    "node-fetch": "2.2.0",
-    "@native-bundler/javascript-plugin": "0.0.1"
-  }
+    "node-fetch": "2.2.0"
+  },
+  "gitHead": "dad3a0ff5f8e5321cd59bc1b09c653e20bd7d159"
 }

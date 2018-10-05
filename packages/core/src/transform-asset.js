@@ -7,7 +7,7 @@
 
 import { JS } from './get-asset-type.js'
 
-import { plugin as JSPlugin } from '@native-bundler/javascript-plugin'
+import { plugin as JSPlugin } from '@native-bundler/plugin-js'
 
 export const transformAsset = (config = {}) => async ({
   source,
@@ -20,7 +20,7 @@ export const transformAsset = (config = {}) => async ({
   // assets here or not
   // we could leave it up to the plugin to decide I guess
   if (isExternal) {
-    return Promise.resolve({ code: '' })
+    return Promise.resolve({ code: source })
   }
   switch (assetType.type) {
     case JS: {

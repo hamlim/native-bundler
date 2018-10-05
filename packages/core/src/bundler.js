@@ -10,6 +10,7 @@
 import { getDependencyTree } from './get-dependency-tree.js'
 import { resolveExternalAssets } from './resolve-external-assets.js'
 import { transformAsset } from './transform-asset.js'
+import { writeFile } from './utils/file-system'
 
 export const bundler = async ({
   entry,
@@ -27,5 +28,32 @@ export const bundler = async ({
     transformAsset: transformAsset(config),
   })
 
-  console.log(tree)
+  let modules = ''
+
+  tree.forEach(mod => {
+    modules += `${mod.id}: [
+function(require, module, exports) {
+  ${mod.code}
+},
+${JSON.stringify(mod.mapping)}
+],`
+  })
+
+  const result = `(function(modules){
+function require(id) {
+  const [fn, mapping] = modules[id];
+  function localRequire(name) {
+    return require(mapping[name])
+  }
+  const module = { exports: {} }
+  fn(localRequire, module, module.exports);
+
+  return module.exports;
+}
+require(0);
+})({${modules}})
+  `
+
+  // write bundle
+  await writeFile(`${out}/bundle.js`, result)
 }

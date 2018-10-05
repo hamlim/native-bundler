@@ -7,7 +7,7 @@ exports.transformAsset = void 0;
 
 var _getAssetType = require("./get-asset-type.js");
 
-var _javascriptPlugin = require("@native-bundler/javascript-plugin");
+var _pluginJs = require("@native-bundler/plugin-js");
 
 /**
  * Transform Asset
@@ -27,14 +27,14 @@ const transformAsset = (config = {}) => async ({
   // we could leave it up to the plugin to decide I guess
   if (isExternal) {
     return Promise.resolve({
-      code: ''
+      code: source
     });
   }
 
   switch (assetType.type) {
     case _getAssetType.JS:
       {
-        return (0, _javascriptPlugin.plugin)({
+        return (0, _pluginJs.plugin)({
           source,
           config
         });

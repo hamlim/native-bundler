@@ -45,7 +45,7 @@ const makeAsset = async ({
   let ast = null;
   let dependencies = [];
 
-  if (assetType.type === _getAssetType.JS) {
+  if (assetType.type === _getAssetType.JS && !isExternal) {
     ast = (0, _babylon.parse)(content, {
       sourceType: 'module'
     });
@@ -115,6 +115,7 @@ const getDependencyTree = async ({
       });
 
       if (isExternal) {
+        asset.code = asset.code.replace(depPath, absolutePath);
         externalPaths.push({
           depPath,
           absolutePath,
