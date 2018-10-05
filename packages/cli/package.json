@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/cli",
-  "version": "0.0.2",
+  "version": "0.0.1-alpha.0",
   "description": "",
   "repository": "git@github.com:hamlim/native-bundler.git",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
   "license": "MIT",
   "dependencies": {
-    "@native-bundler/core": "0.0.2"
+    "@native-bundler/core": "^0.0.1-alpha.0"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",
