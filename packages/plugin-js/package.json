@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/plugin-js",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
