@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/index.js",
   "repository": "git@github.com:hamlim/native-bundler.git",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/core": "7.0.1",
     "@babel/traverse": "7.0.0",
-    "@native-bundler/plugin-js": "^0.0.1",
+    "@native-bundler/plugin-js": "^0.0.2",
     "babylon": "6.18.0",
     "node-fetch": "2.2.0"
   },
