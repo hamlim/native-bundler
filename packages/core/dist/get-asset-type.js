@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getAssetType = exports.TXT = exports.CSS = exports.HTML = exports.SVG = exports.JS = void 0;
+exports.getAssetType = exports.MDX = exports.TXT = exports.CSS = exports.HTML = exports.SVG = exports.JS = void 0;
 
 /**
  * Asset Types
@@ -25,9 +25,15 @@ const CSS = 'css';
 exports.CSS = CSS;
 const TXT = 'txt';
 exports.TXT = TXT;
+const MDX = 'mdx';
+exports.MDX = MDX;
 
 const getAssetType = assetPath => {
-  const queryParam = assetPath.split('?nb=')[1];
+  let queryParam = assetPath.split('?nb=')[1];
+
+  if (typeof queryParam === 'undefined') {
+    queryParam = assetPath.split('').reverse().join('').split('.')[0].split('').reverse().join('');
+  }
 
   switch (queryParam) {
     case JS:
@@ -67,6 +73,14 @@ const getAssetType = assetPath => {
         return {
           type: CSS,
           extension: '.css'
+        };
+      }
+
+    case MDX:
+      {
+        return {
+          type: MDX,
+          extension: '.mdx'
         };
       }
 

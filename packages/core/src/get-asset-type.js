@@ -14,9 +14,21 @@ export const SVG = 'svg'
 export const HTML = 'html'
 export const CSS = 'css'
 export const TXT = 'txt'
+export const MDX = 'mdx'
 
 export const getAssetType = assetPath => {
-  const queryParam = assetPath.split('?nb=')[1]
+  let queryParam = assetPath.split('?nb=')[1]
+
+  if (typeof queryParam === 'undefined') {
+    queryParam = assetPath
+      .split('')
+      .reverse()
+      .join('')
+      .split('.')[0]
+      .split('')
+      .reverse()
+      .join('')
+  }
   switch (queryParam) {
     case JS: {
       return {
@@ -46,6 +58,12 @@ export const getAssetType = assetPath => {
       return {
         type: CSS,
         extension: '.css',
+      }
+    }
+    case MDX: {
+      return {
+        type: MDX,
+        extension: '.mdx',
       }
     }
     default: {
