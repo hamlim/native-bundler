@@ -13,26 +13,24 @@ var _transformAsset = require("./transform-asset.js");
 
 var _fileSystem = require("./utils/file-system");
 
-/**
- * Initial module of the native-bundler package
- *
- * In here we need to do a few things:
- *
- * 1. Define a bundler function that we will export
- * 2. Call out to other transformation functions
- */
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 const bundler = async ({
   entry,
   out,
-  config = {
+  config: providedConfig = {},
+  cache
+} = {}) => {
+  let config = _objectSpread({
     cacheExternals: true,
     babel: {
       presets: undefined,
       plugins: undefined
     }
-  },
-  cache
-} = {}) => {
+  }, providedConfig);
+
   const {
     tree
   } = await (0, _getDependencyTree.getDependencyTree)({
@@ -56,7 +54,11 @@ ${JSON.stringify(mod.mapping)}
   });
   const result = `(function(modules){
 function require(id) {
-  const [fn, mapping] = modules[id];
+  const mod = modules[id];
+  if (typeof mod === 'undefined') {
+    throw new Error('Attempted to import module that does not exist. Ensure peer dependencies are correctly imported.');
+  }
+  const [fn, mapping] = mod;
   function localRequire(name) {
     return require(mapping[name])
   }
