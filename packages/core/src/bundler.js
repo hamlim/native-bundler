@@ -15,12 +15,14 @@ import { writeFile } from './utils/file-system'
 export const bundler = async ({
   entry,
   out,
-  config = {
-    cacheExternals: true,
-    babel: { presets: undefined, plugins: undefined },
-  },
+  config: providedConfig = {},
   cache,
 } = {}) => {
+  let config = {
+    cacheExternals: true,
+    babel: { presets: undefined, plugins: undefined },
+    ...providedConfig,
+  }
   const { tree } = await getDependencyTree({
     inputPath: entry,
     resolveExternalAsset: resolveExternalAssets({ config, cache, out }),
@@ -41,7 +43,11 @@ ${JSON.stringify(mod.mapping)}
 
   const result = `(function(modules){
 function require(id) {
-  const [fn, mapping] = modules[id];
+  const mod = modules[id];
+  if (typeof mod === 'undefined') {
+    throw new Error('Attempted to import module that does not exist. Ensure peer dependencies are correctly imported.');
+  }
+  const [fn, mapping] = mod;
   function localRequire(name) {
     return require(mapping[name])
   }

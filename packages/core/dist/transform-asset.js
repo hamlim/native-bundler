@@ -9,6 +9,8 @@ var _getAssetType = require("./get-asset-type.js");
 
 var _pluginJs = require("@native-bundler/plugin-js");
 
+var _pluginMdx = require("@native-bundler/plugin-mdx");
+
 /**
  * Transform Asset
  *
@@ -35,6 +37,14 @@ const transformAsset = (config = {}) => async ({
     case _getAssetType.JS:
       {
         return (0, _pluginJs.plugin)({
+          source,
+          config
+        });
+      }
+
+    case _getAssetType.MDX:
+      {
+        return (0, _pluginMdx.plugin)({
           source,
           config
         });
