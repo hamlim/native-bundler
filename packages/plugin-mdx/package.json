@@ -32,5 +32,6 @@
   "peerDependencies": {
     "@mdx-js/tag": "0.15.0",
     "react": "16.5.2"
-  }
+  },
+  "gitHead": "cb6c28d475004a1ea980225dd2887b5971ed5587"
 }
