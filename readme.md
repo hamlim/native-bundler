@@ -28,4 +28,5 @@ Maybe more as well, but those are the ones I want to start with.
   - [x] Asset Downloader
   - [x] Determine import query param structure
   - [x] Actual bundling assets
+  - [ ] Fix asset ID generation logic
   - [ ] Plugin Architecture

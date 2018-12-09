@@ -14,7 +14,7 @@ function require(id) {
   return module.exports;
 }
 require(0);
-})({4: [
+})({0: [
 function(require, module, exports) {
   "use strict";
 
@@ -24,8 +24,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.log(_localMdxFile.default);
 },
-{"./local-mdx-file.mdx":5}
-],5: [
+{"./local-mdx-file.mdx":0}
+],0: [
 function(require, module, exports) {
   "use strict";
 

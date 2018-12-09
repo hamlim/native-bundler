@@ -24,8 +24,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.log(_reactProductionMin.default.version);
 },
-{"fixtures/static-build/actual/_vendor_/react.production.min.js":1}
-],1: [
+{"https://unpkg.com/react@16.5.1/umd/react.production.min.js":0}
+],0: [
 function(require, module, exports) {
   /** @license React v16.5.1
  * react.production.min.js

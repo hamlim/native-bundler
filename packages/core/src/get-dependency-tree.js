@@ -17,8 +17,6 @@ import { readFile } from './utils/file-system.js'
 import { isExternalImport } from './utils/index.js'
 import { getAssetType, JS } from './get-asset-type.js'
 
-let COUNTER = 0
-
 // @TODO
 // Right now this is only handling Javascript assets
 // This should also handle CSS, TXT, HTML, and SVG assets as well
@@ -27,6 +25,7 @@ const makeAsset = async ({
   filename,
   isExternal = false,
   transformAsset,
+  COUNTER,
 } = {}) => {
   const content = await readFile(filename, 'utf-8')
   const assetType = getAssetType(filename)
@@ -70,10 +69,12 @@ export const getDependencyTree = async ({
   config,
   transformAsset,
 }) => {
+  let COUNTER = 0
   const entryAsset = await makeAsset({
     filename: inputPath,
     isExternal: false,
     transformAsset,
+    COUNTER,
   })
 
   const externalPaths = []
@@ -97,6 +98,7 @@ export const getDependencyTree = async ({
         filename: absolutePath,
         isExternal,
         transformAsset,
+        COUNTER,
       })
       if (isExternal) {
         asset.code = asset.code.replace(depPath, absolutePath)
