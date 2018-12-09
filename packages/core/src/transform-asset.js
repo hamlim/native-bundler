@@ -5,10 +5,11 @@
  * about an asset and will transform it into code
  */
 
-import { JS, MDX } from './get-asset-type.js'
+import { JS, MDX, CSS } from './get-asset-type.js'
 
 import { plugin as JSPlugin } from '@native-bundler/plugin-js'
 import { plugin as MDXPlugin } from '@native-bundler/plugin-mdx'
+import { plugin as CSSPlugin } from '@native-bundler/plugin-css'
 
 export const transformAsset = (config = {}) => async ({
   source,
@@ -32,6 +33,12 @@ export const transformAsset = (config = {}) => async ({
     }
     case MDX: {
       return MDXPlugin({
+        source,
+        config,
+      })
+    }
+    case CSS: {
+      return CSSPlugin({
         source,
         config,
       })

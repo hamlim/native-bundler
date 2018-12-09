@@ -1,6 +1,10 @@
 (function(modules){
 function require(id) {
-  const [fn, mapping] = modules[id];
+  const mod = modules[id];
+  if (typeof mod === 'undefined') {
+    throw new Error('Attempted to import module that does not exist. Ensure peer dependencies are correctly imported.');
+  }
+  const [fn, mapping] = mod;
   function localRequire(name) {
     return require(mapping[name])
   }
@@ -10,7 +14,7 @@ function require(id) {
   return module.exports;
 }
 require(0);
-})({2: [
+})({4: [
 function(require, module, exports) {
   "use strict";
 
@@ -20,8 +24,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.log(_localMdxFile.default);
 },
-{"./local-mdx-file.mdx":3}
-],3: [
+{"./local-mdx-file.mdx":5}
+],5: [
 function(require, module, exports) {
   "use strict";
 
