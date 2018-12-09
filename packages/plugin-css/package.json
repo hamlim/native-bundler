@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/plugin-css",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "CSS transformer plugin for Native Bundler",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
   "homepage": "https://github.com/hamlim/native-bundler#readme",
@@ -18,14 +18,13 @@
     "url": "https://github.com/hamlim/native-bundler/issues"
   },
   "dependencies": {
-    "postcss": "7.0.6",
-    "autoprefixer": "9.4.2"
+    "autoprefixer": "9.4.2",
+    "postcss": "7.0.6"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",
     "@babel/preset-env": "7.1.0"
   },
-  "peerDependencies": {},
   "directories": {
     "lib": "lib",
     "test": "__tests__"
