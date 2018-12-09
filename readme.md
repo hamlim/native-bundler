@@ -5,12 +5,13 @@ This is an attempt at making a javascript bundler program that follows the next 
 1. Imports must be from absolute locations (`import React from 'https://unpkg.com/react@16.4.2/umd/react.production.min.js';`) or relative assets (i.e. no node_modules)
 2. Support for imports of other assets
 
-- CSS
+- CSS ✅
 - HTML
 - SVG
 - TXT
 - MD
-- MDX
+- MDX ✅
+- JS ✅
 - More?
 
 3. Support static builds

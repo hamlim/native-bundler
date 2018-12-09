@@ -11,6 +11,8 @@ var _pluginJs = require("@native-bundler/plugin-js");
 
 var _pluginMdx = require("@native-bundler/plugin-mdx");
 
+var _pluginCss = require("@native-bundler/plugin-css");
+
 /**
  * Transform Asset
  *
@@ -45,6 +47,14 @@ const transformAsset = (config = {}) => async ({
     case _getAssetType.MDX:
       {
         return (0, _pluginMdx.plugin)({
+          source,
+          config
+        });
+      }
+
+    case _getAssetType.CSS:
+      {
+        return (0, _pluginCss.plugin)({
           source,
           config
         });
