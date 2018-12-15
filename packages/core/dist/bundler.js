@@ -67,7 +67,7 @@ function require(id) {
 
   return module.exports;
 }
-require(0);
+require(${tree[0].id});
 })({${modules}})
   `; // write bundle
 

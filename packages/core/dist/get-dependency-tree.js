@@ -30,15 +30,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * create an array of modules (an object that represents the import path)
  * iterate through that array, whenever we find more imports we push those onto the queue
  */
-// @TODO
+// Global module id counter
+let COUNTER = 0; // @TODO
 // Right now this is only handling Javascript assets
 // This should also handle CSS, TXT, HTML, and SVG assets as well
 // this should probably be a point where we can inject plugins
+
 const makeAsset = async ({
   filename,
   isExternal = false,
-  transformAsset,
-  COUNTER
+  transformAsset
 } = {}) => {
   const content = await (0, _fileSystem.readFile)(filename, 'utf-8');
   const assetType = (0, _getAssetType.getAssetType)(filename);
@@ -84,12 +85,10 @@ const getDependencyTree = async ({
   config,
   transformAsset
 }) => {
-  let COUNTER = 0;
   const entryAsset = await makeAsset({
     filename: inputPath,
     isExternal: false,
-    transformAsset,
-    COUNTER
+    transformAsset
   });
   const externalPaths = [];
   const queue = [entryAsset]; // Crawl through the dependencies and create a mapping of them
@@ -113,8 +112,7 @@ const getDependencyTree = async ({
       const child = await makeAsset({
         filename: absolutePath,
         isExternal,
-        transformAsset,
-        COUNTER
+        transformAsset
       });
 
       if (isExternal) {

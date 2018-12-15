@@ -12,12 +12,7 @@ import { resolveExternalAssets } from './resolve-external-assets.js'
 import { transformAsset } from './transform-asset.js'
 import { writeFile } from './utils/file-system'
 
-export const bundler = async ({
-  entry,
-  out,
-  config: providedConfig = {},
-  cache,
-} = {}) => {
+export const bundler = async ({ entry, out, config: providedConfig = {}, cache } = {}) => {
   let config = {
     cacheExternals: true,
     babel: { presets: undefined, plugins: undefined },
@@ -56,7 +51,7 @@ function require(id) {
 
   return module.exports;
 }
-require(0);
+require(${tree[0].id});
 })({${modules}})
   `
 
