@@ -2,8 +2,7 @@
 
 The goal of this module is to delegate the process of bundling and transforming assets.
 
-It should crawl the import tree, flag imports as different types, and correctly pass those
-to the transformer for that asset type.
+It should crawl the import tree, flag imports as different types, and correctly pass those to the transformer for that asset type.
 
 ## Asset Types
 
