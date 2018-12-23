@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/plugin-css",
-  "version": "0.0.5-alpha.0",
+  "version": "0.0.6-alpha.0",
   "description": "CSS transformer plugin for Native Bundler",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
   "homepage": "https://github.com/hamlim/native-bundler#readme",
