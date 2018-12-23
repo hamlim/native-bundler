@@ -13,8 +13,8 @@ function require(id) {
 
   return module.exports;
 }
-require(2);
-})({2: [
+require(0);
+})({0: [
 function(require, module, exports) {
   "use strict";
 
@@ -24,8 +24,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.log(_localCssFile.default);
 },
-{"./local-css-file.css":3}
-],3: [
+{"./local-css-file.css":1}
+],1: [
 function(require, module, exports) {
   "use strict";
 
