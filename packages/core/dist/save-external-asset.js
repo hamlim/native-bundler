@@ -26,7 +26,7 @@ const getAssetName = assetPath => {
   const {
     [splitOnSlash.length - 1]: last
   } = splitOnSlash;
-  return last;
+  return last.split('?')[0];
 };
 
 const saveExternalAsset = async ({

@@ -14,7 +14,7 @@ import path from 'path'
 const getAssetName = assetPath => {
   const splitOnSlash = assetPath.split('/')
   const { [splitOnSlash.length - 1]: last } = splitOnSlash
-  return last
+  return last.split('?')[0]
 }
 
 export const saveExternalAsset = async ({ assetPath, outputDirectory }) => {
@@ -22,9 +22,7 @@ export const saveExternalAsset = async ({ assetPath, outputDirectory }) => {
     // if the asset doesn't begin with `http(s)` then resolve with an Error
     // We don't throw here to avoid try catch blocks in parent contexts
     return Promise.resolve({
-      error: new Error(
-        `Asset Path does not begin with https or http. Asset Path: ${assetPath}.`,
-      ),
+      error: new Error(`Asset Path does not begin with https or http. Asset Path: ${assetPath}.`),
     })
   } else {
     // the path is validated, we can attempt to fetch it

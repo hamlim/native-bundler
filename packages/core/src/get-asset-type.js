@@ -74,3 +74,12 @@ export const getAssetType = assetPath => {
     }
   }
 }
+
+export const shouldTransformExternals = (filename, type) => {
+  switch (type) {
+    case JS:
+      return filename.includes('esm=true')
+    default:
+      return false
+  }
+}

@@ -32,9 +32,16 @@ const assetGenerator = () => {
     let dependencies = [];
 
     if (assetType.type === _getAssetType.JS && !isExternal) {
-      ast = (0, _babylon.parse)(content, {
-        sourceType: 'module'
-      });
+      try {
+        ast = (0, _babylon.parse)(content, {
+          sourceType: 'module',
+          plugins: ['jsx']
+        });
+      } catch (e) {
+        console.log('Babylon parse error');
+        console.log(e.message);
+      }
+
       (0, _traverse.default)(ast, {
         ImportDeclaration({
           node
