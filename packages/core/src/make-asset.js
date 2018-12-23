@@ -26,7 +26,6 @@ export const assetGenerator = () => {
       } catch (e) {
         console.log('Babylon parse error')
         console.log(e.message)
-        console.log(content)
       }
       traverse(ast, {
         ImportDeclaration({ node }) {

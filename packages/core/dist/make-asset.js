@@ -40,7 +40,6 @@ const assetGenerator = () => {
       } catch (e) {
         console.log('Babylon parse error');
         console.log(e.message);
-        console.log(content);
       }
 
       (0, _traverse.default)(ast, {
