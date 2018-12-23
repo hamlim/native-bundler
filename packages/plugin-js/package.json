@@ -18,5 +18,5 @@
   "scripts": {
     "build": "babel src/ --out-dir dist/"
   },
-  "gitHead": "cb6c28d475004a1ea980225dd2887b5971ed5587"
+  "gitHead": "3bcb3155604acfe6409038f81e6e686c31cbf205"
 }
