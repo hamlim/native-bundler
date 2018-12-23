@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getAssetType = exports.MDX = exports.TXT = exports.CSS = exports.HTML = exports.SVG = exports.JS = void 0;
+exports.shouldTransformExternals = exports.getAssetType = exports.MDX = exports.TXT = exports.CSS = exports.HTML = exports.SVG = exports.JS = void 0;
 
 /**
  * Asset Types
@@ -95,3 +95,15 @@ const getAssetType = assetPath => {
 };
 
 exports.getAssetType = getAssetType;
+
+const shouldTransformExternals = (filename, type) => {
+  switch (type) {
+    case JS:
+      return filename.includes('esm=true');
+
+    default:
+      return false;
+  }
+};
+
+exports.shouldTransformExternals = shouldTransformExternals;

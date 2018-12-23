@@ -18,11 +18,20 @@ require(0);
 function(require, module, exports) {
   "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = App;
+
 var _reactProductionMin = _interopRequireDefault(require("fixtures/static-build/actual/_vendor_/react.production.min.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 console.log(_reactProductionMin.default.version);
+
+function App() {
+  return _reactProductionMin.default.createElement("h1", null, "Hi");
+}
 },
 {"fixtures/static-build/actual/_vendor_/react.production.min.js":1}
 ],1: [

@@ -26,10 +26,7 @@ const transformAsset = (config = {}) => async ({
   isExternal,
   assetType
 }) => {
-  // @TODO determine if we want to actually handle external
-  // assets here or not
-  // we could leave it up to the plugin to decide I guess
-  if (isExternal) {
+  if (isExternal && !(0, _getAssetType.shouldTransformExternals)(filename, assetType.type)) {
     return Promise.resolve({
       code: source
     });
