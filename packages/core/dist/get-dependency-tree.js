@@ -5,19 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getDependencyTree = void 0;
 
-var _traverse = _interopRequireDefault(require("@babel/traverse"));
-
-var _babylon = require("babylon");
-
 var _fs = _interopRequireDefault(require("fs"));
 
 var _path = _interopRequireDefault(require("path"));
 
-var _fileSystem = require("./utils/file-system.js");
-
 var _index = require("./utils/index.js");
 
-var _getAssetType = require("./get-asset-type.js");
+var _makeAsset = require("./make-asset.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,61 +24,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * create an array of modules (an object that represents the import path)
  * iterate through that array, whenever we find more imports we push those onto the queue
  */
-// Global module id counter
-let COUNTER = 0; // @TODO
-// Right now this is only handling Javascript assets
-// This should also handle CSS, TXT, HTML, and SVG assets as well
-// this should probably be a point where we can inject plugins
-
-const makeAsset = async ({
-  filename,
-  isExternal = false,
-  transformAsset
-} = {}) => {
-  const content = await (0, _fileSystem.readFile)(filename, 'utf-8');
-  const assetType = (0, _getAssetType.getAssetType)(filename);
-  let ast = null;
-  let dependencies = [];
-
-  if (assetType.type === _getAssetType.JS && !isExternal) {
-    ast = (0, _babylon.parse)(content, {
-      sourceType: 'module'
-    });
-    (0, _traverse.default)(ast, {
-      ImportDeclaration({
-        node
-      }) {
-        dependencies.push(node.source.value);
-      }
-
-    });
-  }
-
-  const id = COUNTER++;
-  const {
-    code
-  } = await transformAsset({
-    source: content,
-    filename,
-    ast,
-    isExternal,
-    assetType
-  });
-  return {
-    id,
-    filename,
-    dependencies,
-    isExternal,
-    code
-  };
-};
-
 const getDependencyTree = async ({
   inputPath,
   resolveExternalAsset,
   config,
   transformAsset
 }) => {
+  const makeAsset = (0, _makeAsset.assetGenerator)();
   const entryAsset = await makeAsset({
     filename: inputPath,
     isExternal: false,

@@ -8,58 +8,10 @@
  * iterate through that array, whenever we find more imports we push those onto the queue
  */
 
-import traverse from '@babel/traverse'
-import { parse } from 'babylon'
 import fs from 'fs'
 import path from 'path'
-
-import { readFile } from './utils/file-system.js'
 import { isExternalImport } from './utils/index.js'
-import { getAssetType, JS } from './get-asset-type.js'
-
-// Global module id counter
-let COUNTER = 0
-
-// @TODO
-// Right now this is only handling Javascript assets
-// This should also handle CSS, TXT, HTML, and SVG assets as well
-// this should probably be a point where we can inject plugins
-const makeAsset = async ({ filename, isExternal = false, transformAsset } = {}) => {
-  const content = await readFile(filename, 'utf-8')
-  const assetType = getAssetType(filename)
-
-  let ast = null
-  let dependencies = []
-
-  if (assetType.type === JS && !isExternal) {
-    ast = parse(content, {
-      sourceType: 'module',
-    })
-    traverse(ast, {
-      ImportDeclaration({ node }) {
-        dependencies.push(node.source.value)
-      },
-    })
-  }
-
-  const id = COUNTER++
-
-  const { code } = await transformAsset({
-    source: content,
-    filename,
-    ast,
-    isExternal,
-    assetType,
-  })
-
-  return {
-    id,
-    filename,
-    dependencies,
-    isExternal,
-    code,
-  }
-}
+import { assetGenerator } from './make-asset.js'
 
 export const getDependencyTree = async ({
   inputPath,
@@ -67,6 +19,7 @@ export const getDependencyTree = async ({
   config,
   transformAsset,
 }) => {
+  const makeAsset = assetGenerator()
   const entryAsset = await makeAsset({
     filename: inputPath,
     isExternal: false,
