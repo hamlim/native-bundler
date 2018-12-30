@@ -1,7 +1,7 @@
 import traverse from '@babel/traverse'
 import { parse } from 'babylon'
-import { isUniversalImport } from './utils/index.js'
-import { readFile } from './utils/file-system.js'
+import { isUniversalImport } from '../utils/index.js'
+import { readFile } from '../utils/file-system.js'
 import { getAssetType, JS } from './get-asset-type.js'
 
 // @TODO

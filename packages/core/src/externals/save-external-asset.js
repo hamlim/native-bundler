@@ -7,7 +7,7 @@
  * then returns the created time for the asset and the local path to the asset
  */
 
-import { writeFile, makeDirectory, stat, exists } from './utils/file-system.js'
+import { writeFile, makeDirectory, stat, exists } from '../utils/file-system.js'
 import fetch from 'node-fetch'
 import path from 'path'
 
@@ -17,8 +17,8 @@ const getAssetName = assetPath => {
   return last.split('?')[0]
 }
 
-export const saveExternalAsset = async ({ assetPath, outputDirectory }) => {
-  if (!assetPath.startsWith('https') && !assetPath.startsWith('http')) {
+export async function saveExternalAsset({ assetPath, outputDirectory }) {
+  if (!assetPath.startsWith('https://') && !assetPath.startsWith('http://')) {
     // if the asset doesn't begin with `http(s)` then resolve with an Error
     // We don't throw here to avoid try catch blocks in parent contexts
     return Promise.resolve({

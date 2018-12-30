@@ -11,7 +11,7 @@ var _path = _interopRequireDefault(require("path"));
 
 var _index = require("./utils/index.js");
 
-var _makeAsset = require("./make-asset.js");
+var _makeAsset = require("./asset/make-asset.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

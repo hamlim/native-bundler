@@ -12,6 +12,6 @@ const isExternalImport = importPath => importPath.startsWith('http');
 
 exports.isExternalImport = isExternalImport;
 
-const isUniversalImport = importPath => !importPath.startsWith('.') || !importPath.startsWith('http');
+const isUniversalImport = importPath => !importPath.startsWith('.') && !importPath.startsWith('http');
 
 exports.isUniversalImport = isUniversalImport;

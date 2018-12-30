@@ -8,11 +8,11 @@
  */
 
 import { getDependencyTree } from './get-dependency-tree.js'
-import { resolveExternalAssets } from './resolve-external-assets.js'
-import { getAssetTransformer } from './transform-asset.js'
-import { writeFile } from './utils/file-system'
+import { resolveExternalAssets } from './externals/resolve-external-assets.js'
+import { getAssetTransformer } from './asset/transform-asset.js'
+import { writeFile } from './utils/file-system.js'
 
-export const bundler = async ({ entry, out, config: providedConfig = {}, cache } = {}) => {
+export async function bundler({ entry, out, config: providedConfig = {}, cache } = {}) {
   let config = {
     cacheExternals: true,
     babel: { presets: undefined, plugins: undefined },

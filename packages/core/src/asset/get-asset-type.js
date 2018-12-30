@@ -16,7 +16,7 @@ export const CSS = 'css'
 export const TXT = 'txt'
 export const MDX = 'mdx'
 
-export const getAssetType = assetPath => {
+export function getAssetType(assetPath) {
   let queryParam = assetPath.split('?nb=')[1]
 
   if (typeof queryParam === 'undefined') {
@@ -75,7 +75,7 @@ export const getAssetType = assetPath => {
   }
 }
 
-export const shouldTransformExternals = (filename, type) => {
+export function shouldTransformExternals(filename, type) {
   switch (type) {
     case JS:
       return filename.includes('esm=true')
