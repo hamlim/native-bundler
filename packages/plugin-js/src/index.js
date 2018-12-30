@@ -12,21 +12,22 @@ export const plugin = async ({ source, config: userConfig }) => {
   // default babel config
   let config = {
     presets: ['@babel/preset-env', '@babel/preset-react'],
-    plugins: [],
+    plugins: ['macros'],
   }
   // if the user provided a `babelConfig` object in their native-bundler
   // config then we want to extract those
   if (typeof userConfig.babelConfig !== 'undefined') {
     // we pull off plugins and presets
     // and initialize them to the default config above
-    let {
-      presets = config.presets,
-      plugins = config.plugins,
-    } = userConfig.babelConfig
+    let { presets = config.presets, plugins = config.plugins, ...rest } = userConfig.babelConfig
 
     // re-assign the config the new values
     config.presets = presets
     config.plugins = plugins
+    config = {
+      ...config,
+      ...rest,
+    }
   }
 
   // return a promise with code, map, and an ast

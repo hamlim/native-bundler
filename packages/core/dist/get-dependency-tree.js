@@ -48,7 +48,10 @@ const getDependencyTree = async ({
       let absolutePath,
           isExternal = false;
 
-      if ((0, _index.isExternalImport)(depPath) && config.cacheExternals) {
+      if ((0, _index.isUniversalImport)(depPath)) {
+        // ignore universal imports i.e. import X from 'react';
+        break;
+      } else if ((0, _index.isExternalImport)(depPath) && config.cacheExternals) {
         isExternal = true;
         absolutePath = await resolveExternalAsset(depPath);
       } else {

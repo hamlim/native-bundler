@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/plugin-mdx",
-  "version": "0.0.6-alpha.4",
+  "version": "0.0.6-alpha.6",
   "description": "MDX transformer plugin for Native Bundler",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
   "homepage": "https://github.com/hamlim/native-bundler#readme",

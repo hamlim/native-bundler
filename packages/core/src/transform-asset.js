@@ -11,37 +11,33 @@ import { plugin as JSPlugin } from '@native-bundler/plugin-js'
 import { plugin as MDXPlugin } from '@native-bundler/plugin-mdx'
 import { plugin as CSSPlugin } from '@native-bundler/plugin-css'
 
-export const transformAsset = (config = {}) => async ({
-  source,
-  filename,
-  ast,
-  isExternal,
-  assetType,
-}) => {
-  if (isExternal && !shouldTransformExternals(filename, assetType.type)) {
-    return Promise.resolve({ code: source })
-  }
-  switch (assetType.type) {
-    case JS: {
-      return JSPlugin({
-        source,
-        config,
-      })
+export function getAssetTransformer(config = {}) {
+  return async function transformAsset({ source, filename, ast, isExternal, assetType }) {
+    if (isExternal && !shouldTransformExternals(filename, assetType.type)) {
+      return Promise.resolve({ code: source })
     }
-    case MDX: {
-      return MDXPlugin({
-        source,
-        config,
-      })
-    }
-    case CSS: {
-      return CSSPlugin({
-        source,
-        config,
-      })
-    }
-    default: {
-      return Promise.resolve({ code: '' })
+    switch (assetType.type) {
+      case JS: {
+        return JSPlugin({
+          source,
+          config: { ...config, babelConfig: { ...(config.babelConfig || {}), filename } },
+        })
+      }
+      case MDX: {
+        return MDXPlugin({
+          source,
+          config: { ...config, babelConfig: { ...(config.babelConfig || {}), filename } },
+        })
+      }
+      case CSS: {
+        return CSSPlugin({
+          source,
+          config: { ...config, filename },
+        })
+      }
+      default: {
+        return Promise.resolve({ code: '' })
+      }
     }
   }
 }

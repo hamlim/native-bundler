@@ -41,7 +41,7 @@ const bundler = async ({
       out
     }),
     config,
-    transformAsset: (0, _transformAsset.transformAsset)(config)
+    transformAsset: (0, _transformAsset.getAssetTransformer)(config)
   });
   let modules = '';
   tree.forEach(mod => {

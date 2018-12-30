@@ -24,18 +24,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 console.log(_localCssFile.default);
 },
-{"./local-css-file.css":1}
-],1: [
-function(require, module, exports) {
-  "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = ".red {\n  color: red;\n}\n";
-exports.default = _default;
-},
 {}
 ],})
   

@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/plugin-js",
-  "version": "0.0.6-alpha.4",
+  "version": "0.0.6-alpha.6",
   "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
@@ -8,7 +8,8 @@
   "dependencies": {
     "@babel/core": "7.1.2",
     "@babel/preset-env": "7.1.0",
-    "@babel/preset-react": "7.0.0"
+    "@babel/preset-react": "7.0.0",
+    "babel-plugin-macros": "2.4.3"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",

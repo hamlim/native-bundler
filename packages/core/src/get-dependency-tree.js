@@ -10,7 +10,7 @@
 
 import fs from 'fs'
 import path from 'path'
-import { isExternalImport } from './utils/index.js'
+import { isExternalImport, isUniversalImport } from './utils/index.js'
 import { assetGenerator } from './make-asset.js'
 
 export const getDependencyTree = async ({
@@ -37,7 +37,10 @@ export const getDependencyTree = async ({
     for (const depPath of asset.dependencies) {
       let absolutePath,
         isExternal = false
-      if (isExternalImport(depPath) && config.cacheExternals) {
+      if (isUniversalImport(depPath)) {
+        // ignore universal imports i.e. import X from 'react';
+        break
+      } else if (isExternalImport(depPath) && config.cacheExternals) {
         isExternal = true
         absolutePath = await resolveExternalAsset(depPath)
       } else {

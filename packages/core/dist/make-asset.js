@@ -9,6 +9,8 @@ var _traverse = _interopRequireDefault(require("@babel/traverse"));
 
 var _babylon = require("babylon");
 
+var _index = require("./utils/index.js");
+
 var _fileSystem = require("./utils/file-system.js");
 
 var _getAssetType = require("./get-asset-type.js");
@@ -46,7 +48,9 @@ const assetGenerator = () => {
         ImportDeclaration({
           node
         }) {
-          dependencies.push(node.source.value);
+          if (!(0, _index.isUniversalImport)(node.source.value)) {
+            dependencies.push(node.source.value);
+          }
         }
 
       });
@@ -67,7 +71,9 @@ const assetGenerator = () => {
         assetType
       }));
     } catch (e) {
-      console.error(e.message);
+      console.log('Failed to transform Asset: ' + filename);
+      console.log(e); // console.error(e.message)
+
       return Promise.resolve({
         id: -1,
         filename: '',

@@ -21,17 +21,9 @@ function(require, module, exports) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = App;
-
-var _reactProductionMin = _interopRequireDefault(require("https://unpkg.com/react@16.5.1/umd/react.production.min.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-console.log(_reactProductionMin.default.version);
-
-function App() {
-  return _reactProductionMin.default.createElement("h1", null, "Hi");
-}
+exports.default = void 0;
+var _default = 1;
+exports.default = _default;
 },
 {}
 ],})

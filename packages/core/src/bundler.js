@@ -9,7 +9,7 @@
 
 import { getDependencyTree } from './get-dependency-tree.js'
 import { resolveExternalAssets } from './resolve-external-assets.js'
-import { transformAsset } from './transform-asset.js'
+import { getAssetTransformer } from './transform-asset.js'
 import { writeFile } from './utils/file-system'
 
 export const bundler = async ({ entry, out, config: providedConfig = {}, cache } = {}) => {
@@ -22,7 +22,7 @@ export const bundler = async ({ entry, out, config: providedConfig = {}, cache }
     inputPath: entry,
     resolveExternalAsset: resolveExternalAssets({ config, cache, out }),
     config,
-    transformAsset: transformAsset(config),
+    transformAsset: getAssetTransformer(config),
   })
 
   let modules = ''

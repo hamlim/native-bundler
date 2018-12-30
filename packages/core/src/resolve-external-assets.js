@@ -16,11 +16,7 @@
 
 import { saveExternalAsset } from './save-external-asset.js'
 
-export const resolveExternalAssets = ({
-  config,
-  cache,
-  out,
-}) => async assetPath => {
+export const resolveExternalAssets = ({ config, cache, out }) => async assetPath => {
   // @TODO Revisit to see if we need to provide the config here
   // we could flush the cache before calling this method if we want
   // to force a full asset download
@@ -36,12 +32,7 @@ export const resolveExternalAssets = ({
       assetPath,
       outputDirectory: out,
     })
-    const {
-      birthtime: createdTime,
-      filepath: localPath,
-      name: filename,
-      error,
-    } = asset
+    const { birthtime: createdTime, filepath: localPath, name: filename, error } = asset
     cache.set(assetPath, {
       localPath,
       createdTime,
