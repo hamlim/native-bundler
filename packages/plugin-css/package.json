@@ -1,6 +1,6 @@
 {
   "name": "@native-bundler/plugin-css",
-  "version": "0.0.6-alpha.6",
+  "version": "0.0.6-alpha.8",
   "description": "CSS transformer plugin for Native Bundler",
   "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
   "homepage": "https://github.com/hamlim/native-bundler#readme",
@@ -12,7 +12,8 @@
     "url": "git+https://github.com/hamlim/native-bundler.git"
   },
   "scripts": {
-    "build": "babel src/ --out-dir dist/"
+    "build": "babel src/ --out-dir dist/",
+    "version": "npm version"
   },
   "bugs": {
     "url": "https://github.com/hamlim/native-bundler/issues"
