@@ -11,7 +11,7 @@ var _path = _interopRequireDefault(require("path"));
 
 var _index = require("./utils/index.js");
 
-var _makeAsset = require("./make-asset.js");
+var _makeAsset = require("./asset/make-asset.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48,7 +48,10 @@ const getDependencyTree = async ({
       let absolutePath,
           isExternal = false;
 
-      if ((0, _index.isExternalImport)(depPath) && config.cacheExternals) {
+      if ((0, _index.isUniversalImport)(depPath)) {
+        // ignore universal imports i.e. import X from 'react';
+        break;
+      } else if ((0, _index.isExternalImport)(depPath) && config.cacheExternals) {
         isExternal = true;
         absolutePath = await resolveExternalAsset(depPath);
       } else {

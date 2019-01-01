@@ -3,26 +3,26 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.bundler = void 0;
+exports.bundler = bundler;
 
 var _getDependencyTree = require("./get-dependency-tree.js");
 
-var _resolveExternalAssets = require("./resolve-external-assets.js");
+var _resolveExternalAssets = require("./externals/resolve-external-assets.js");
 
-var _transformAsset = require("./transform-asset.js");
+var _transformAsset = require("./asset/transform-asset.js");
 
-var _fileSystem = require("./utils/file-system");
+var _fileSystem = require("./utils/file-system.js");
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-const bundler = async ({
+async function bundler({
   entry,
   out,
   config: providedConfig = {},
   cache
-} = {}) => {
+} = {}) {
   let config = _objectSpread({
     cacheExternals: true,
     babel: {
@@ -41,7 +41,7 @@ const bundler = async ({
       out
     }),
     config,
-    transformAsset: (0, _transformAsset.transformAsset)(config)
+    transformAsset: (0, _transformAsset.getAssetTransformer)(config)
   });
   let modules = '';
   tree.forEach(mod => {
@@ -72,6 +72,4 @@ require(${tree[0].id});
   `; // write bundle
 
   await (0, _fileSystem.writeFile)(`${out}/bundle.js`, result);
-};
-
-exports.bundler = bundler;
+}

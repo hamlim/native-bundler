@@ -35,9 +35,7 @@ function dirDiff(dirA, dirB) {
         directoryQueue.push(child)
       })
     } else if (
-      !dirBTree.children.find(
-        item => item.name === entry.name && item.type === entry.type,
-      )
+      !dirBTree.children.find(item => item.name === entry.name && item.type === entry.type)
     ) {
       diffFiles.push(entry)
     }
@@ -61,8 +59,6 @@ function fileDiff(dirA, dirB) {
   return { err: null }
 }
 
-const assetCache = new Map()
-
 async function run(fixtureDirectory) {
   const { name, children } = fixtureDirectory
   // get the src and expected directories
@@ -80,7 +76,7 @@ async function run(fixtureDirectory) {
   await bundler({
     entry: `${src.path}/src.js`,
     out: `fixtures/${name}/actual`,
-    cache: assetCache,
+    cache: new Map(),
   })
 
   // grab any diffs between directories
@@ -107,10 +103,7 @@ async function setup() {
         caught = true
         e.forEach(err => {
           console.error('\n')
-          console.error(
-            `Error ⚠️: ${testName} Failed with message: ${err.message}`,
-            err.meta,
-          )
+          console.error(`Error ⚠️: ${testName} Failed with message: ${err.message}`, err.meta)
           console.error('\n')
         })
       } else {

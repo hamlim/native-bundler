@@ -9,9 +9,9 @@ var _traverse = _interopRequireDefault(require("@babel/traverse"));
 
 var _babylon = require("babylon");
 
-var _index = require("./utils/index.js");
+var _index = require("../utils/index.js");
 
-var _fileSystem = require("./utils/file-system.js");
+var _fileSystem = require("../utils/file-system.js");
 
 var _getAssetType = require("./get-asset-type.js");
 

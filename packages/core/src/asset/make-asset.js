@@ -1,7 +1,7 @@
 import traverse from '@babel/traverse'
 import { parse } from 'babylon'
-
-import { readFile } from './utils/file-system.js'
+import { isUniversalImport } from '../utils/index.js'
+import { readFile } from '../utils/file-system.js'
 import { getAssetType, JS } from './get-asset-type.js'
 
 // @TODO
@@ -29,7 +29,9 @@ export const assetGenerator = () => {
       }
       traverse(ast, {
         ImportDeclaration({ node }) {
-          dependencies.push(node.source.value)
+          if (!isUniversalImport(node.source.value)) {
+            dependencies.push(node.source.value)
+          }
         },
       })
     }
@@ -46,7 +48,9 @@ export const assetGenerator = () => {
         assetType,
       }))
     } catch (e) {
-      console.error(e.message)
+      console.log('Failed to transform Asset: ' + filename)
+      console.log(e)
+      // console.error(e.message)
       return Promise.resolve({
         id: -1,
         filename: '',
