@@ -72,12 +72,20 @@ async function run(fixtureDirectory) {
     mkdirSync(actualPath)
   }
 
+  let getConfig = cfg => cfg
+
+  if (children.find(file => file.name === 'native-bundler.config.js')) {
+    getConfig = require(`../${fixtureDirectory.path}/native-bundler.config.js`)
+  }
+
   // bundle the code
-  await bundler({
-    entry: `${src.path}/src.js`,
-    out: `fixtures/${name}/actual`,
-    cache: new Map(),
-  })
+  await bundler(
+    getConfig({
+      entry: `${src.path}/src.js`,
+      out: `fixtures/${name}/actual`,
+      cache: new Map(),
+    }),
+  )
 
   // grab any diffs between directories
   const { err: dirDiffErr } = dirDiff(expected.path, actualPath)

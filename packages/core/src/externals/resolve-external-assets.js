@@ -31,6 +31,7 @@ export const resolveExternalAssets = ({ config, cache, out }) => async assetPath
     const asset = await saveExternalAsset({
       assetPath,
       outputDirectory: out,
+      transformAsset: config.transformExternalAsset,
     })
     const { birthtime: createdTime, filepath: localPath, name: filename, error } = asset
     cache.set(assetPath, {

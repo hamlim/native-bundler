@@ -38,7 +38,8 @@ const resolveExternalAssets = ({
   } else {
     const asset = await (0, _saveExternalAsset.saveExternalAsset)({
       assetPath,
-      outputDirectory: out
+      outputDirectory: out,
+      transformAsset: config.transformExternalAsset
     });
     const {
       birthtime: createdTime,
