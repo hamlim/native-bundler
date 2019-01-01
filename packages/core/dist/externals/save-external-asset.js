@@ -29,9 +29,14 @@ const getAssetName = assetPath => {
   return last.split('?')[0];
 };
 
+function defaultTransformAsset(body) {
+  return body;
+}
+
 async function saveExternalAsset({
   assetPath,
-  outputDirectory
+  outputDirectory,
+  transformAsset = defaultTransformAsset
 }) {
   if (!assetPath.startsWith('https://') && !assetPath.startsWith('http://')) {
     // if the asset doesn't begin with `http(s)` then resolve with an Error
@@ -46,6 +51,7 @@ async function saveExternalAsset({
     try {
       const response = await (0, _nodeFetch.default)(assetPath);
       const body = await response.text();
+      const fileContents = await transformAsset(body);
       const vendorDirectory = `${outputDirectory}/_vendor_`;
       const directoryExists = await (0, _fileSystem.exists)(vendorDirectory);
 
@@ -54,7 +60,7 @@ async function saveExternalAsset({
       }
 
       const filepath = `${vendorDirectory}/${name}`;
-      await (0, _fileSystem.writeFile)(filepath, body);
+      await (0, _fileSystem.writeFile)(filepath, fileContents);
 
       const absolutePath = _path.default.resolve(process.cwd(), filepath);
 

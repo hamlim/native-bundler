@@ -17,7 +17,15 @@ const getAssetName = assetPath => {
   return last.split('?')[0]
 }
 
-export async function saveExternalAsset({ assetPath, outputDirectory }) {
+function defaultTransformAsset(body) {
+  return body
+}
+
+export async function saveExternalAsset({
+  assetPath,
+  outputDirectory,
+  transformAsset = defaultTransformAsset,
+}) {
   if (!assetPath.startsWith('https://') && !assetPath.startsWith('http://')) {
     // if the asset doesn't begin with `http(s)` then resolve with an Error
     // We don't throw here to avoid try catch blocks in parent contexts
@@ -30,13 +38,14 @@ export async function saveExternalAsset({ assetPath, outputDirectory }) {
     try {
       const response = await fetch(assetPath)
       const body = await response.text()
+      const fileContents = await transformAsset(body)
       const vendorDirectory = `${outputDirectory}/_vendor_`
       const directoryExists = await exists(vendorDirectory)
       if (!directoryExists) {
         await makeDirectory(vendorDirectory)
       }
       const filepath = `${vendorDirectory}/${name}`
-      await writeFile(filepath, body)
+      await writeFile(filepath, fileContents)
       const absolutePath = path.resolve(process.cwd(), filepath)
       const { birthtime } = await stat(absolutePath)
       return Promise.resolve({
