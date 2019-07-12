@@ -763,28 +763,28 @@
     unist-builder "^1.0.1"
     unist-util-visit "^1.3.0"
 
-"@native-bundler/plugin-css@0.0.6-alpha.5":
-  version "0.0.6-alpha.5"
-  resolved "https://registry.yarnpkg.com/@native-bundler/plugin-css/-/plugin-css-0.0.6-alpha.5.tgz#be9158ab8592ff981c5cb86abd2c18352f9b28c0"
-  integrity sha512-yslFHSG/sVZjPld5fzrYtAHyBEAxWEClmpTqlqMGKTHFB60DZQwPUeIqqubU5nygtJOiNrCuCv0x6ojT4Lq8TQ==
+"@native-bundler/plugin-css@0.0.6-alpha.8":
+  version "0.0.6-alpha.8"
+  resolved "https://registry.yarnpkg.com/@native-bundler/plugin-css/-/plugin-css-0.0.6-alpha.8.tgz#af82bec1ff5ef0eb57f38612522192593e4b63d0"
+  integrity sha512-FLPfFbdT2kkzRluyarzTac25DmbOWWrJ+mHP7cUoFf3iJCfSFHu7LXfohjvD07kudvi0mBOiuEmqunSJu+b2pw==
   dependencies:
     autoprefixer "9.4.2"
     postcss "7.0.6"
 
-"@native-bundler/plugin-js@0.0.6-alpha.5":
-  version "0.0.6-alpha.5"
-  resolved "https://registry.yarnpkg.com/@native-bundler/plugin-js/-/plugin-js-0.0.6-alpha.5.tgz#389353be953a1db21860a6a9d0c2d065d02dda55"
-  integrity sha512-0IeqjAsSbK4fSDvNp59Vsa6Tof4zGECK8q7J8zH1BudY2mYTcM8KXEkgD2YRo0YyRB428EsnKnJDhUwmXJS+Jg==
+"@native-bundler/plugin-js@0.0.6-alpha.8":
+  version "0.0.6-alpha.8"
+  resolved "https://registry.yarnpkg.com/@native-bundler/plugin-js/-/plugin-js-0.0.6-alpha.8.tgz#aff4ee4eed9873f2ebdcfe9935dbb2a991a0e2df"
+  integrity sha512-uZsus7lazfKD+W/wwQe7isyLCYJwlh1SOF1+fIq06AIKIZSIwNm52LKdwMB3t+dJVZzZY35sNlE3M6YqaSxI/Q==
   dependencies:
     "@babel/core" "7.1.2"
     "@babel/preset-env" "7.1.0"
     "@babel/preset-react" "7.0.0"
     babel-plugin-macros "2.4.3"
 
-"@native-bundler/plugin-mdx@0.0.6-alpha.5":
-  version "0.0.6-alpha.5"
-  resolved "https://registry.yarnpkg.com/@native-bundler/plugin-mdx/-/plugin-mdx-0.0.6-alpha.5.tgz#bc630a8d17c96e883a8058a3d414817e9727dc7a"
-  integrity sha512-C29hUs7LfOfpaJ4TTYb8ng73B7gFDo9/RMerBVW64Hhe2y7L9LYeyVvbsmSofWavQahjYQKEBuDgpO1eiuf7ag==
+"@native-bundler/plugin-mdx@0.0.6-alpha.8":
+  version "0.0.6-alpha.8"
+  resolved "https://registry.yarnpkg.com/@native-bundler/plugin-mdx/-/plugin-mdx-0.0.6-alpha.8.tgz#81abb9b58d9870809ae5ac0e9fc9f5b53cac3f42"
+  integrity sha512-IrBtB4tTaZgi90jZT3FLACEIYRxBzNgAc6iJ9+Y5AM/gzs/mfSz8sXNhZITWNu3s86AbZOlLYcnVhT2kuQN93w==
   dependencies:
     "@babel/core" "7.1.2"
     "@babel/plugin-proposal-object-rest-spread" "7.0.0"
@@ -1833,9 +1833,9 @@ lodash.debounce@^4.0.8:
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
 lodash@^4.17.10:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-  integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 loose-envify@^1.0.0:
   version "1.4.0"
