@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "autoprefixer": "9.4.2",
-    "postcss": "7.0.6"
+    "postcss": "8.2.10"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",
