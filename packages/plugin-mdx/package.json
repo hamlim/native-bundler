@@ -19,7 +19,7 @@
     "url": "https://github.com/hamlim/native-bundler/issues"
   },
   "dependencies": {
-    "@babel/core": "7.1.2",
+    "@babel/core": "7.20.12",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
