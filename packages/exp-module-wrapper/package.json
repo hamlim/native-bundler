@@ -1,0 +1,8 @@
+{
+  "name": "@native-bundler/exp-module-wrapper",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "author": "Matthew Hamlin <hamlim@outlook.com> (https://matthamlin.me/)",
+  "license": "MIT"
+}
